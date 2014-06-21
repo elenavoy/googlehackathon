@@ -88,6 +88,18 @@ google.devrel.samples.hello.print = function(greeting) {
   document.getElementById('outputLog').appendChild(element);
 };
 
+
+/**
+ * Prints projects
+ */
+google.devrel.samples.hello.printProject = function(greeting) {
+	alert("Hello");
+  var element = document.createElement('div');
+  //element.classList.add('row');
+  element.innerHTML = greeting;
+  document.getElementById('projects').appendChild(element);
+};
+
 /**
  * Gets a numbered greeting via the API.
  * @param {string} id ID of the greeting.
@@ -146,6 +158,16 @@ google.devrel.samples.hello.authedGreeting = function(id) {
 };
 
 /**
+* Display Projects
+*/
+google.devrel.samples.hello.getProjects = function(){
+	
+	resp = "Project Name1";
+    google.devrel.samples.hello.printProject(resp);
+    
+};
+
+/**
  * Enables the button callbacks in the UI.
  */
 google.devrel.samples.hello.enableButtons = function() {
@@ -186,6 +208,7 @@ google.devrel.samples.hello.init = function(apiRoot) {
       google.devrel.samples.hello.enableButtons();
       google.devrel.samples.hello.signin(true,
           google.devrel.samples.hello.userAuthed);
+	  google.devrel.samples.hello.getProjects();
     }
   }
 
