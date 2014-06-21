@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import javax.inject.Named;
 
+import com.example.demo.Position;
+
 /**
  * Defines v1 of a helloworld API, which provides simple "greeting" methods.
  */
@@ -34,6 +36,24 @@ public class Greetings {
     } catch (IndexOutOfBoundsException e) {
       throw new NotFoundException("Greeting not found with an index: " + id);
     }
+  }
+
+  public Project getProject(@Named("id") Integer id) throws NotFoundException{
+    try {
+      return Data.getAllProjects().get(id);
+    } catch (IndexOutOfBoundsException e) {
+      throw new NotFoundException("Project not found with an index: " + id);
+    }
+  }
+
+  public Project createProject(@Named("name") String name, @Named("creatorName") String creatorName, 
+    @Named("email") String email, @Named("description") String description, @Named("positions") ArrayList<Position> positions){
+      Project project = new Project(name, creatorName, email, description, positions);
+      return this.storeProject(project);
+  }
+
+  public Project storeProject(@Named("project") Project project){
+      return Data.storeProject(project);
   }
 
   public ArrayList<HelloGreeting> listGreeting() {
